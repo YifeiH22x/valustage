@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ValuStage Valuation Tool</title>
+<meta name="description" content="Interactive valuation of SM Entertainment: DCF scenarios, peer multiples, the growth implied by the share price and a sensitivity chart.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html">Valu<span>Stage</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Project</a>
+      <a href="tool.html" aria-current="page">Valuation tool</a>
+      <a href="downloads/ValuStage_MVP_Prototype.xlsx">Excel prototype</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="tool-head">
+    <h1>SM Entertainment valuation</h1>
+    <p class="muted measure">Pick a scenario or move the assumptions; every number on the page recalculates. The logic matches the Excel prototype. Cells with a yellow background are illustrative inputs to replace with researched data.</p>
+  </div>
+
+  <div class="tool-grid">
+    <aside class="controls" aria-label="Assumptions">
+      <h2>Scenario</h2>
+      <div class="seg" role="group" aria-label="Scenario">
+        <button type="button" data-scn="Bear">Bear</button>
+        <button type="button" data-scn="Base">Base</button>
+        <button type="button" data-scn="Bull">Bull</button>
+      </div>
+      <p class="seg-note" id="seg-note" aria-live="polite"></p>
+
+      <div id="sliders"></div>
+
+      <label class="switch"><input type="checkbox" id="renew"> <span>aespa renews its contract when it ends in 2027</span></label>
+      <button type="button" class="link-btn" id="reset">Reset to the selected scenario</button>
+    </aside>
+
+    <div class="results">
+      <div class="kpis" aria-live="polite">
+        <div class="kpi"><div class="label" id="k1-label">DCF value per share</div><div class="value" id="k1"></div><div class="sub" id="k1-sub"></div></div>
+        <div class="kpi"><div class="label">Value range across methods</div><div class="value" id="k2"></div><div class="sub muted" id="k2-sub"></div></div>
+        <div class="kpi"><div class="label">Revenue growth the share price assumes</div><div class="value" id="k3"></div><div class="sub muted" id="k3-sub"></div></div>
+      </div>
+
+      <section class="card">
+        <h2>Value per share by method</h2>
+        <p class="desc">DCF under each scenario and two peer-multiple methods, against the market price and the prices paid in past deals (KRW).</p>
+        <div class="chart" id="c-value"></div>
+        <div class="legend">
+          <span><i style="background:#5B3FD9"></i>Selected assumptions</span>
+          <span><i style="background:#1B1F3B"></i>DCF scenarios</span>
+          <span><i style="background:#B9BECC"></i>Peer multiples</span>
+          <span><i class="line" style="border-color:#D98E1F"></i>Market price</span>
+          <span><i class="dash" style="border-color:#1B1F3B"></i>Past deal prices: 110k, 120k, 150k</span>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Revenue by artist group</h2>
+        <p class="desc">KRW billion, under the selected assumptions. A group drops to zero after its contract ends if it does not renew.</p>
+        <div class="chart" id="c-rev"></div>
+        <div class="legend" id="rev-legend"></div>
+      </section>
+
+      <section class="card">
+        <h2>What moves the value most</h2>
+        <p class="desc">Change in DCF value per share (KRW) when one assumption moves and everything else stays at the selected values.</p>
+        <div class="chart" id="c-sens"></div>
+        <div class="legend"><span><i style="background:#C2414F"></i>Value goes down</span><span><i style="background:#2A8573"></i>Value goes up</span></div>
+      </section>
+
+      <section class="card">
+        <h2>Artist inputs, FY2025</h2>
+        <p class="desc">Prices in KRW. Revenue per group = (album units x album price + shows x attendance x ticket price) x (1 + other-revenue ratio). The total must match SM's reported revenue.</p>
+        <div class="table-scroll">
+          <table class="input-table">
+            <thead><tr><th>Group</th><th class="num">Albums (mn)</th><th class="num">Album price</th><th class="num">Shows</th><th class="num">Attendance</th><th class="num">Ticket price</th><th class="num">Contract ends</th><th class="num">Revenue (bn)</th></tr></thead>
+            <tbody id="artist-body"></tbody>
+          </table>
+        </div>
+        <p class="small" style="margin-top:12px" id="recon"></p>
+      </section>
+
+      <section class="card">
+        <h2>Company inputs and peer multiples</h2>
+        <p class="desc">Yellow cells (other-revenue ratio, D&amp;A, net cash and peer multiples) are placeholders until replaced with current data. White cells come from SM's reported results and the market price.</p>
+        <div class="table-scroll">
+          <table class="input-table compact">
+            <tbody id="company-body"></tbody>
+          </table>
+        </div>
+        <div class="table-scroll" style="margin-top:16px">
+          <table class="input-table compact">
+            <thead><tr><th>Peer</th><th class="num">EV / EBITDA</th><th class="num">P / E</th></tr></thead>
+            <tbody id="peer-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>DCF detail</h2>
+        <p class="desc">KRW billion. Free cash flow = operating profit x (1 - tax) x cash conversion; terminal value uses the terminal growth rate.</p>
+        <div class="table-scroll"><table id="dcf-table"></table></div>
+      </section>
+
+      <p class="disclaimer">Estimates for coursework (SYSEN 5900, Cornell University), not investment advice. Reported revenue, operating profit and deal prices come from public sources; artist-level figures, peer multiples, D&amp;A and net cash are illustrative.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap"><p>Yifei Hua, SYSEN 5900, Cornell University, Fall 2026.</p></div>
+</footer>
+
+<script src="assets/model.js"></script>
+<script src="assets/charts.js"></script>
+<script src="assets/tool.js"></script>
+</body>
+</html>

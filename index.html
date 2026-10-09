@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ValuStage: Valuing SM Entertainment</title>
+<meta name="description" content="ValuStage is a corporate valuation analytics tool for artist-driven entertainment companies, with SM Entertainment as the first case. SYSEN 5900 project, Cornell University.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html">Valu<span>Stage</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html" aria-current="page">Project</a>
+      <a href="tool.html">Valuation tool</a>
+      <a href="downloads/ValuStage_MVP_Prototype.xlsx">Excel prototype</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <h1>In three years, one SM Entertainment share has sold for anywhere from KRW 82,500 to KRW 150,000.</h1>
+      <p class="lede">ValuStage is a valuation tool for analysts who cover artist-driven entertainment companies. It links assumptions about each artist group to a range of company value, and shows what the current share price already assumes.</p>
+      <div class="ruler">
+        <div id="ruler"></div>
+        <p class="ruler-caption">Deal prices from Toh &amp; Bae (2023) and Bloomberg News (2025); market price from Yahoo Finance. The violet band is the ValuStage DCF range across the Bear, Base and Bull scenarios, calculated in your browser with illustrative inputs.</p>
+      </div>
+      <div class="actions">
+        <a class="btn btn-primary" href="tool.html">Open the valuation tool</a>
+        <a class="btn btn-plain" href="downloads/ValuStage_MVP_Prototype.xlsx">Download the Excel prototype</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap side-head">
+      <h2>Why this company is hard to value</h2>
+      <div class="measure">
+        <p>SM Entertainment (KOSDAQ: 041510) is the agency behind NCT, aespa and RIIZE, with 2025 revenue of about KRW 1.17 trillion (SM Entertainment, 2026b). Much of its value rests on a few artist groups and on events such as contract expiries, military service, tours and scandals. Comebacks and debuts tend to lift entertainment stocks, while dating news and scandals push them down (Ariani &amp; Husodo, 2024); in the 2019 Burning Sun scandal, SM shares fell more than 20% in three weeks (CNBC, 2019).</p>
+        <p>None of these drivers appear in the financial statements, and a standard model hides them inside one growth rate. ValuStage models revenue group by group, so an analyst can ask a concrete question, such as what happens to value if aespa does not renew its contract in 2027.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap side-head">
+      <h2>What analysts need</h2>
+      <div>
+        <p class="measure muted">Needs from the customer affinity process, ranked by importance. The primary users are investment analysts at an asset manager that covers Korean entertainment stocks.</p>
+        <ol class="needs">
+          <li><span class="rank">1</span><div><strong>The model fits how K-pop companies make money</strong><span class="muted">Business fit</span></div></li>
+          <li><span class="rank">2</span><div><strong>I can trust the data</strong><span class="muted">Data quality</span></div></li>
+          <li><span class="rank">3</span><div><strong>I can see what changes the value</strong><span class="muted">Scenario insight</span></div></li>
+          <li><span class="rank">4</span><div><strong>I can defend every number</strong><span class="muted">Transparency</span></div></li>
+          <li><span class="rank">5</span><div><strong>It is quick and easy to use</strong><span class="muted">Ease of use</span></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <h2>How ValuStage works</h2>
+      <p class="measure muted">Public data and the analyst's own estimates flow through a data hub into the artist driver model and the valuation engine, and the results appear on one dashboard. A source log records where every input came from.</p>
+      <figure class="figure">
+        <img src="assets/concept-sketch.png" alt="Annotated concept sketch: public data sources and the analyst's private estimates feed a data hub, then an artist driver model, a valuation engine and a dashboard, with a source log underneath." width="1800" height="1114" loading="lazy">
+        <figcaption>Annotated concept sketch. Numbers match the list below.</figcaption>
+      </figure>
+      <ol class="components">
+        <li><span class="callout">1</span><div><strong>Public data inputs</strong><br><span class="muted small">Filings, stock prices, album and concert data and YouTube views, each with its source and date.</span></div></li>
+        <li><span class="callout">2</span><div><strong>Private data vault</strong><br><span class="muted small">Keeps the analyst's own estimates separate from public data.</span></div></li>
+        <li><span class="callout">3</span><div><strong>Data hub</strong><br><span class="muted small">Links every record to a company, artist group, release or tour on one timeline.</span></div></li>
+        <li><span class="callout">4</span><div><strong>Artist driver model</strong><br><span class="muted small">Albums, tours, contract dates and military service for each group.</span></div></li>
+        <li><span class="callout">5</span><div><strong>Valuation engine</strong><br><span class="muted small">DCF and peer multiples, two or three scenarios and the implied-assumption check.</span></div></li>
+        <li><span class="callout">6</span><div><strong>Dashboard</strong><br><span class="muted small">Value range, scenarios and a sensitivity chart of the key assumptions.</span></div></li>
+        <li><span class="callout">7</span><div><strong>Source log</strong><br><span class="muted small">Source and date of each input and every assumption change.</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap two-col">
+      <div>
+        <h2>Who and what it connects to</h2>
+        <p class="muted">The context diagram shows ValuStage between its users (the investment analyst and the portfolio manager) and its data sources: Open DART filings, stock market data, music charts and fan platforms, news media and the analyst's private data.</p>
+      </div>
+      <figure class="figure">
+        <img src="assets/context-diagram.png" alt="Context diagram with ValuStage at the centre, linked to the investment analyst, portfolio manager, analyst's private data, stock market data, news media, SM Entertainment, Open DART and music charts and fan platforms." width="1800" height="1300" loading="lazy">
+        <figcaption>Context diagram.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <h2>What the first version covers</h2>
+      <p class="measure muted">The scope is kept small so a working version is realistic by the end of Spring 2027.</p>
+      <div class="scope">
+        <div>
+          <h3>In the first version</h3>
+          <ul>
+            <li>SM Entertainment as the case, with HYBE, JYP and YG as peers</li>
+            <li>Financial statements, stock prices and artist-level data for NCT, aespa, RIIZE and NCT WISH</li>
+            <li>DCF and comparable-company multiples</li>
+            <li>Bear, Base and Bull scenarios, including a contract non-renewal</li>
+            <li>The growth rate implied by the share price</li>
+            <li>One dashboard with a sensitivity chart</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Left for later</h3>
+          <ul>
+            <li>Automatic news monitoring and alerts</li>
+            <li>Back-testing the model against past events</li>
+            <li>Automatic report export</li>
+            <li>Every listed entertainment company</li>
+            <li>Automatic data import from Open DART and price feeds (the prototype uses manual entry)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <h2>Originating requirements</h2>
+      <p class="measure muted">Each requirement traces to a customer need (N1 to N5) and a use case. The last column shows whether the Excel prototype already meets it; "Partly" means it works with manual steps.</p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>ID</th><th>Requirement</th><th>Need</th><th>Verification</th><th>Excel prototype</th></tr></thead>
+          <tbody id="or-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <h2>References</h2>
+      <ul class="refs">
+        <li>Ariani, A. W., &amp; Husodo, Z. A. (2024). The impact of celebrity news on entertainment industry stock prices. <i>The Indonesian Capital Market Review, 16</i>(1), Article 4. <a href="https://doi.org/10.21002/icmr.v16i1.1169">https://doi.org/10.21002/icmr.v16i1.1169</a></li>
+        <li>Barnett, W. P., Rhee, M., &amp; Kim, S.-H. (2015). <i>SM Entertainment</i> (Case No. IB108). Stanford Graduate School of Business. <a href="https://www.gsb.stanford.edu/faculty-research/case-studies/sm-entertainment">https://www.gsb.stanford.edu/faculty-research/case-studies/sm-entertainment</a></li>
+        <li>Bloomberg News. (2025, May 27). <i>Tencent Music buys SM Entertainment stake in K-pop bet</i>. <a href="https://www.bloomberg.com/news/articles/2025-05-27/tencent-increases-korea-music-exposure-ahead-of-china-k-pop-move">https://www.bloomberg.com/news/articles/2025-05-27/tencent-increases-korea-music-exposure-ahead-of-china-k-pop-move</a></li>
+        <li>CNBC. (2019, March 19). <i>K-pop sex scandals are crushing Korean entertainment stocks</i>. <a href="https://www.cnbc.com/amp/2019/03/19/k-pop-sex-scandals-are-crushing-korean-entertainment-stocks.html">https://www.cnbc.com/amp/2019/03/19/k-pop-sex-scandals-are-crushing-korean-entertainment-stocks.html</a></li>
+        <li>SM Entertainment. (2026a). <i>2Q26 earnings call script</i> [Earnings call transcript]. <a href="https://cdn2.smentertainment.com/wp-content/uploads/2026/08/05141207/2Q26_Script_%EC%8B%A4%EC%A0%81_Eng_F-1.pdf">https://cdn2.smentertainment.com/wp-content/uploads/2026/08/05141207/2Q26_Script_%EC%8B%A4%EC%A0%81_Eng_F-1.pdf</a></li>
+        <li>SM Entertainment. (2026b). <i>4Q25 earnings release</i> [Investor presentation]. <a href="https://cdn2.smentertainment.com/wp-content/uploads/2026/02/11123116/4Q25_Earnings_Eng_vF.pdf">https://cdn2.smentertainment.com/wp-content/uploads/2026/02/11123116/4Q25_Earnings_Eng_vF.pdf</a></li>
+        <li>Spotify for Developers. (2026). <i>February 2026 Web API dev mode changes: Migration guide</i>. <a href="https://developer.spotify.com/documentation/web-api/tutorials/february-2026-migration-guide">https://developer.spotify.com/documentation/web-api/tutorials/february-2026-migration-guide</a></li>
+        <li>Toh, M., &amp; Bae, G. (2023, March 28). <i>Kakao wins control of K-pop powerhouse SM Entertainment</i>. CNN Business. <a href="https://abc17news.com/money/cnn-business-consumer/2023/03/28/kakao-wins-control-of-k-pop-powerhouse-sm-entertainment/">https://abc17news.com/money/cnn-business-consumer/2023/03/28/kakao-wins-control-of-k-pop-powerhouse-sm-entertainment/</a></li>
+        <li>Yahoo Finance. (n.d.). <i>SM Entertainment Co., Ltd. (041510.KQ)</i>. Retrieved October 8, 2026, from <a href="https://finance.yahoo.com/quote/041510.KQ/">https://finance.yahoo.com/quote/041510.KQ/</a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p>Yifei Hua, SYSEN 5900, Cornell University, Fall 2026.</p>
+    <p>All values on this site are estimates for coursework, built partly on illustrative inputs. They are not investment advice.</p>
+  </div>
+</footer>
+
+<script src="assets/model.js"></script>
+<script src="assets/charts.js"></script>
+<script>
+const ORS = [
+  ["OR-1","Import annual and quarterly financial statements for SM, HYBE, JYP and YG from Open DART for at least the last 5 years.","N2","Demonstration","Partial"],
+  ["OR-2","Import daily share prices for SM, HYBE, JYP and YG.","N2","Demonstration","Partial"],
+  ["OR-3","Let the analyst enter album, concert and other artist-level data for at least four artist groups.","N1, N2","Demonstration","Yes"],
+  ["OR-4","Store private estimates separately from public data and never overwrite public values.","N2","Test","Partial"],
+  ["OR-5","Model each artist group's revenue from albums, concerts (shows x attendance x ticket price) and other sources.","N1","Inspection","Yes"],
+  ["OR-6","Set a contract end date and a renewal assumption for each artist group.","N1, N3","Test","Yes"],
+  ["OR-7","Show any difference between total artist-level revenue and SM's reported revenue.","N1, N4","Test","Yes"],
+  ["OR-8","Calculate value per share with a DCF model.","N1","Test","Yes"],
+  ["OR-9","Calculate value per share with EV/EBITDA and P/E multiples of HYBE, JYP and YG.","N1","Test","Yes"],
+  ["OR-10","Let users define, save and compare at least three scenarios (bear, base and bull).","N3","Demonstration","Yes"],
+  ["OR-11","Calculate the value of one selected assumption implied by a given share price.","N3","Test","Yes"],
+  ["OR-12","Show how value per share changes when each key assumption changes by a set amount.","N3, N5","Test","Yes"],
+  ["OR-13","Record the source and date of each imported or entered input.","N4","Inspection","Partial"],
+  ["OR-14","Show the current share price and past deal prices on the valuation chart.","N4","Demonstration","Yes"],
+  ["OR-15","Show the value range, scenarios and sensitivity results on one dashboard screen.","N5","Demonstration","Yes"],
+  ["OR-16","Label all results as estimates, not investment advice.","N4","Inspection","Yes"]
+];
+document.getElementById("or-body").innerHTML = ORS.map(r =>
+  `<tr><td><strong>${r[0]}</strong></td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td>
+   <td><span class="tag ${r[4] === "Yes" ? "tag-yes" : "tag-partial"}">${r[4] === "Yes" ? "Yes" : "Partly"}</span></td></tr>`).join("");
+
+const out = run(DEFAULTS, "Base");
+const rulerData = {
+  price: DEFAULTS.company.price, deals: DEFAULTS.deals,
+  range: [out.all.Bear, out.all.Bull], base: out.all.Base
+};
+const drawRuler = () => priceRuler(document.getElementById("ruler"), rulerData);
+drawRuler();
+let t; window.addEventListener("resize", () => { clearTimeout(t); t = setTimeout(drawRuler, 120); });
+</script>
+</body>
+</html>
